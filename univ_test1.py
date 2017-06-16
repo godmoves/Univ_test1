@@ -10,7 +10,8 @@ from collections import Counter
 
 LR = 1e-3
 env = gym.make("CartPole-v0")
-env = wrappers.Monitor(env, '/tmp/cartpole-experiment-1', force=True)
+#uncomment next line to record result
+#env = wrappers.Monitor(env, '/tmp/cartpole-experiment-1', force=True)
 env.reset()
 goal_steps  = 200
 score_requirement = 50
@@ -54,9 +55,10 @@ def initial_population():
     training_data_save = np.array(training_data)
     np.save('saved.npy', training_data_save)
 
-    print 'Total accepted score number:', len(accepted_scores)
+    print 'Total accepted number:', len(accepted_scores)
     print 'Average accepted score:', mean(accepted_scores)
     print 'Median accepted score:', median(accepted_scores)
+    print 'Distribution of accepted scores:'
     print Counter(accepted_scores)
 
     return training_data
@@ -118,6 +120,7 @@ for each_game in range(100):
     env.reset()
 
     for _ in range(goal_steps):
+        #don't render to make it faster
         #env.render()
 
         if len(prev_obs)==0:
