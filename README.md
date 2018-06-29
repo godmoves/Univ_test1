@@ -1,4 +1,6 @@
 # Univ_test1
+**Universe is deprecated, so this code is out of date**  
+
 This is a small demo to OpenAI Gym
 
 ## Dependencies  
